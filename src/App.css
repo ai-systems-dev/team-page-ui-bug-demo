@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1f2937;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.topbar h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.invite-wrap {
+  /* BUG: missing `position: relative`. The panel below is `position:
+     absolute`, so with no positioned ancestor here it escapes this wrapper
+     entirely and positions itself against the viewport instead of hanging
+     below the "Invite member" button — it renders overlapping the header
+     near the top-right of the page instead of as a normal dropdown. */
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.invite-panel {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  width: 260px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.invite-panel label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.invite-panel input {
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-active {
+  color: #111827;
+  border-bottom-color: #2563eb;
+  font-weight: 600;
+}
+
+/* BUG: no :focus-visible styling anywhere on .tab or .btn-primary, so
+   keyboard users get no visible indicator of which control is focused. */
+
+.member-grid {
+  display: block; /* BUG: should be a responsive grid; using floats with a
+                      fixed pixel width means cards overlap/clip on narrow
+                      viewports instead of stacking into a single column */
+}
+
+.member-card {
+  float: left;
+  width: 300px;
+  margin: 0 16px 16px 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.member-info h2 {
+  font-size: 15px;
+  margin: 0 0 2px;
+}
+
+.member-info p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 6px;
+}
+
+.status-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.status-active { background: #dcfce7; color: #86efac; } /* BUG: text barely
+  distinguishable from background, fails contrast */
+.status-pending { background: #fef9c3; color: #fde68a; } /* BUG: same issue */
